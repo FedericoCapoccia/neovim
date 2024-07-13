@@ -1,15 +1,16 @@
-local M = {
+return {
   "neovim/nvim-lspconfig",
   dependencies = {
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "j-hui/fidget.nvim",
+    "stevearc/conform.nvim",
   },
   config = function()
-    require("fidget").setup({})
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+    -- On Lsp Attach
     local on_attach = function(_, bufnr)
       local nmap = function(keys, func, desc)
         if desc then
@@ -20,7 +21,9 @@ local M = {
 
       nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
       nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-      nmap("<leader>ff", "<cmd>lua vim.lsp.buf.format({async=true})<CR>", "[G]oto [D]eclaration")
+      nmap("<leader>ff", function()
+        require("conform").format({ async = true, lsp_fallback = true })
+      end, "[F]ormatter")
 
       -- Documentation
       nmap("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -31,6 +34,7 @@ local M = {
       "clangd", "nil_ls"
     }
 
+    -- Setup every serer in servers {}
     for _, lsp in ipairs(servers) do
       require("lspconfig")[lsp].setup {
         on_attach = on_attach,
@@ -38,7 +42,8 @@ local M = {
       }
     end
 
-    require("lspconfig").lua_ls.setup {
+    require("fidget").setup({})
+    require("lspconfig").lua_ls.setup({
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
@@ -49,9 +54,17 @@ local M = {
           telemetry = { enable = false },
         },
       }
-    }
+    })
 
+    require("conform").setup({
+      formatters_by_ft = {
+        nix = { "nixpkgs_fmt" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+      },
+      format_on_save = {
+        lsp_fallback = true,
+      }
+    })
   end
 }
-
-return M
