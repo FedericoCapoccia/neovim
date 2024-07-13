@@ -1,57 +1,56 @@
 local M = {
   "neovim/nvim-lspconfig",
   dependencies = {
-    -- Completion
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
+    "j-hui/fidget.nvim",
   },
   config = function()
-    setup_cmp()
-    require("lspconfig").clangd.setup({})
+    require("fidget").setup({})
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+    local on_attach = function(_, bufnr)
+      local nmap = function(keys, func, desc)
+        if desc then
+          desc = "LSP: " .. desc
+        end
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+      end
+
+      nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+      nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+      -- Documentation
+      nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+      nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+    end
+
+    local servers = {
+      "clangd"
+    }
+
+    for _, lsp in ipairs(servers) do
+      require("lspconfig")[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities
+      }
+    end
+
+    require("lspconfig").lua_ls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' },
+          },
+          telemetry = { enable = false },
+        },
+      }
+    }
+
   end
 }
-
-function setup_cmp()
-  local cmp = require("cmp")
-  cmp.setup({
-    mapping = cmp.mapping.preset.insert({
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-      ["<Tab>"] = cmp.mapping.select_next_item(),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    }),
-
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
-
-    formatting = {
-      format = function(_, vim_item)
-        vim_item.menu = nil
-        return vim_item
-      end
-    },
-
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "path" },
-      { name = "crates" },
-    }),
-
-    snippet = {
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body)
-      end,
-    }
-  })
-end
 
 return M
