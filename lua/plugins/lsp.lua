@@ -20,6 +20,7 @@ local M = {
 
       nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
       nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+      nmap("<leader>ff", "<cmd>lua vim.lsp.buf.format({async=true})<CR>", "[G]oto [D]eclaration")
 
       -- Documentation
       nmap("K", vim.lsp.buf.hover, "Hover Documentation")
@@ -27,7 +28,7 @@ local M = {
     end
 
     local servers = {
-      "clangd"
+      "clangd", "nil_ls"
     }
 
     for _, lsp in ipairs(servers) do
