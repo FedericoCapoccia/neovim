@@ -20,14 +20,14 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- System
-vim.opt.mouse = ''
+vim.opt.mouse = ""
 vim.opt.updatetime = 250
 vim.opt.colorcolumn = "120"
 vim.opt.breakindent = true
 
 -- Use system cliboard if not in SSH
 if not vim.env.SSH_TTY then
-  vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = "unnamedplus"
 end
 
 -- Providers
