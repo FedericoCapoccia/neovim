@@ -12,12 +12,12 @@ return {
     local cmp = require("cmp")
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         ["<Tab>"] = cmp.mapping.select_next_item(),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
       }),
 
       window = {
@@ -29,7 +29,7 @@ return {
         format = function(_, vim_item)
           vim_item.menu = nil
           return vim_item
-        end
+        end,
       },
 
       sources = cmp.config.sources({
@@ -44,8 +44,7 @@ return {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
         end,
-      }
+      },
     })
-  end
+  end,
 }
-

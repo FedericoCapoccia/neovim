@@ -19,8 +19,12 @@ return {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
       end
 
-      nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+      nmap("<C-Space>", vim.lsp.buf.code_action, "[C]ode [A]ction")
       nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+      nmap("<F2>", vim.lsp.buf.rename, "Rename")
+
+      -- Format
       nmap("<leader>ff", function()
         require("conform").format({ async = true, lsp_fallback = true })
       end, "[F]ormatter")
@@ -30,16 +34,14 @@ return {
       nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
     end
 
-    local servers = {
-      "clangd", "nil_ls"
-    }
+    local servers = { "clangd", "nil_ls" }
 
-    -- Setup every serer in servers {}
+    -- Setup every lsp in servers {}
     for _, lsp in ipairs(servers) do
-      require("lspconfig")[lsp].setup {
+      require("lspconfig")[lsp].setup({
         on_attach = on_attach,
-        capabilities = capabilities
-      }
+        capabilities = capabilities,
+      })
     end
 
     require("fidget").setup({})
@@ -48,23 +50,20 @@ return {
       capabilities = capabilities,
       settings = {
         Lua = {
-          diagnostics = {
-            globals = { 'vim' },
-          },
+          diagnostics = { globals = { "vim" } },
           telemetry = { enable = false },
         },
-      }
+      },
     })
 
     require("conform").setup({
       formatters_by_ft = {
+        lua = { "stylua" },
         nix = { "nixpkgs_fmt" },
         c = { "clang-format" },
         cpp = { "clang-format" },
       },
-      format_on_save = {
-        lsp_fallback = true,
-      }
+      format_on_save = { lsp_fallback = true },
     })
-  end
+  end,
 }

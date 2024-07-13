@@ -1,7 +1,7 @@
 local options = {
   indent = {
-    char = '╎',
-  }
+    char = "╎",
+  },
 }
 
 return {
@@ -9,5 +9,5 @@ return {
   main = "ibl",
   config = function()
     require("ibl").setup(options)
-  end
+  end,
 }

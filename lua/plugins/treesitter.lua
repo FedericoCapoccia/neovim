@@ -13,7 +13,7 @@ return {
         "nix",
         "toml",
         "vim",
-        "vimdoc"
+        "vimdoc",
       },
 
       auto_install = true,

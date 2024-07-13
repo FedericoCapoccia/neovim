@@ -5,8 +5,8 @@ return {
   config = function()
     require("bufferline").setup({
       options = {
-        mode = "buffers"
-      }
+        mode = "buffers",
+      },
     })
   end,
 }
