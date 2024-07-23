@@ -5,6 +5,9 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "j-hui/fidget.nvim",
     "stevearc/conform.nvim",
+
+    -- Rust
+    "simrat39/rust-tools.nvim",
   },
   config = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -56,12 +59,22 @@ return {
       },
     })
 
+    local rust_tools = require("rust-tools")
+    rust_tools.setup({
+      server = {
+        on_attach = function(_, bufnr)
+          vim.keymap.set("n", "<C-Space>", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+        end,
+      },
+    })
+
     require("conform").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         nix = { "nixpkgs_fmt" },
         c = { "clang-format" },
         cpp = { "clang-format" },
+        rust = { "rustfmt" },
       },
       format_on_save = { lsp_fallback = true },
     })
