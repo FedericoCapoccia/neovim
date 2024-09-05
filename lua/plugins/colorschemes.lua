@@ -11,7 +11,21 @@ return {
           sidebars = "transparent",
         },
       })
-      vim.cmd.colorscheme("tokyonight")
+    end,
+  },
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    config = function()
+      require("onedark").setup({
+        style = "darker",
+        transparent = true,
+        lualine = {
+          transparent = true,
+        },
+      })
+      require("onedark").load()
+      vim.cmd.colorscheme("onedark")
     end,
   },
 }
