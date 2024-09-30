@@ -37,7 +37,7 @@ return {
             nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
         end
 
-        local servers = { "nil_ls", "wgsl_analyzer", "jdtls" }
+        local servers = { "nil_ls", "wgsl_analyzer" }
 
         -- Setup every lsp in servers {}
         for _, lsp in ipairs(servers) do
