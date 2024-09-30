@@ -131,6 +131,27 @@ local function jdtls_on_attach(client, bufnr)
     vim.keymap.set("n", "crc", "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
     vim.keymap.set("x", "crc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
     vim.keymap.set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = "LSP: " .. desc
+        end
+        vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+    end
+
+    nmap("<C-Space>", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+    nmap("<F2>", vim.lsp.buf.rename, "Rename")
+
+    -- Format
+    nmap("<leader>ff", function()
+        require("conform").format({ async = true, lsp_fallback = true })
+    end, "[F]ormatter")
+
+    -- Documentation
+    nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 end
 
 local function jdtls_setup(event)
@@ -205,11 +226,11 @@ local function jdtls_setup(event)
             referencesCodeLens = {
                 enabled = true,
             },
-            -- inlayHints = {
-            --   parameterNames = {
-            --     enabled = 'all' -- literals, all, none
-            --   }
-            -- },
+            inlayHints = {
+                parameterNames = {
+                    enabled = "all", -- literals, all, none
+                },
+            },
             format = {
                 enabled = true,
                 -- settings = {
