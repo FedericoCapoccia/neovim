@@ -35,6 +35,7 @@ vim.opt.colorcolumn = "120"
 vim.opt.breakindent = true
 vim.opt.laststatus = 3
 vim.opt.showmode = false
+vim.opt.termguicolors = true
 
 -- Use system cliboard if not in SSH
 if not vim.env.SSH_TTY then

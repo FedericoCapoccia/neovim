@@ -20,3 +20,7 @@ map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
+
+-- NvimTree
+map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
