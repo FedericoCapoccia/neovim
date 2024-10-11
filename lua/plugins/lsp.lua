@@ -52,6 +52,8 @@ return {
             capabilities = capabilities,
             cmd = {
                 "clangd",
+                "--background-index",
+                "--clang-tidy",
                 "--fallback-style=webkit",
             },
         })
