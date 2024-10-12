@@ -111,14 +111,14 @@ return {
         end,
     },
 
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^5",
-        lazy = false,
-        config = function()
-            require "configs.rustaceanvim"
-        end,
-    },
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^5",
+    --     lazy = false,
+    --     config = function()
+    --         require "configs.rustaceanvim"
+    --     end,
+    -- },
 
     {
         "neovim/nvim-lspconfig",

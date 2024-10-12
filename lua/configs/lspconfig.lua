@@ -63,6 +63,8 @@ M.defaults = function()
         },
     }
 
+    require("lspconfig").rust_analyzer.setup {}
+
     require("lspconfig").lua_ls.setup {
         on_attach = M.on_attach,
         capabilities = M.capabilities,
