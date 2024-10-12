@@ -33,3 +33,11 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 -- NvimTree
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+
+map({ "n", "t" }, "<leader>tf", function()
+    require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+end, { desc = "Toggle terminal - float" })
+
+map({ "n", "t" }, "<leader>th", function()
+    require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end, { desc = "Toggle terminal - float" })

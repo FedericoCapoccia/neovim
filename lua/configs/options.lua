@@ -37,6 +37,10 @@ vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.termguicolors = true
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.timeoutlen = 400
+
 -- Use system cliboard if not in SSH
 if not vim.env.SSH_TTY then
     vim.opt.clipboard = "unnamedplus"
