@@ -7,7 +7,7 @@ return {
         "nvchad/ui",
         config = function()
             require "nvchad"
-        end
+        end,
     },
 
     {
@@ -15,7 +15,7 @@ return {
         lazy = true,
         build = function()
             require("base46").load_all_highlights()
-        end
+        end,
     },
 
     {
@@ -27,6 +27,13 @@ return {
     },
 
     "nvchad/volt",
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("dressing").setup()
+        end,
+    },
 
     {
         "lewis6991/gitsigns.nvim",
@@ -83,4 +90,81 @@ return {
         end,
     },
 
+    -- LSP
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = { lua = { "stylua" } },
+            format_on_save = { lsp_fallback = true },
+        },
+    },
+
+    {
+        "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+        opts = function()
+            return require "configs.mason"
+        end,
+    },
+
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+            "hrsh7th/cmp-nvim-lsp",
+            "stevearc/conform.nvim",
+            "simrat39/rust-tools.nvim",
+        },
+        config = function()
+            require("configs.lspconfig").defaults()
+        end,
+    },
+
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            {
+                -- snippet plugin
+                "L3MON4D3/LuaSnip",
+                dependencies = "rafamadriz/friendly-snippets",
+                opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+                config = function(_, opts)
+                    require("luasnip").config.set_config(opts)
+                    require "configs.luasnip"
+                end,
+            },
+
+            -- autopairing of (){}[] etc
+            {
+                "windwp/nvim-autopairs",
+                opts = {
+                    fast_wrap = {},
+                    disable_filetype = { "TelescopePrompt", "vim" },
+                },
+                config = function(_, opts)
+                    require("nvim-autopairs").setup(opts)
+
+                    -- setup cmp for autopairs
+                    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+                    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+                end,
+            },
+
+            -- cmp sources plugins
+            {
+                "saadparwaiz1/cmp_luasnip",
+                "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+                "hrsh7th/cmp-cmdline",
+
+                "saecki/crates.nvim",
+            },
+        },
+        opts = function()
+            return require "configs.cmp"
+        end,
+    },
 }

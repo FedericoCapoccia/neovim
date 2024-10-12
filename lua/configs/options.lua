@@ -39,7 +39,7 @@ vim.opt.termguicolors = true
 
 -- Use system cliboard if not in SSH
 if not vim.env.SSH_TTY then
-  vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end
 
 -- Providers
@@ -54,11 +54,17 @@ vim.g.have_nerd_font = true
 
 -- Automatically set tabs for Makefiles
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "make",
-  callback = function()
-    vim.opt_local.expandtab = false -- Use tabs, not spaces
-    vim.opt_local.shiftwidth = 8 -- Use 8 spaces per tab (standard for Makefiles)
-    vim.opt_local.softtabstop = 0 -- Use actual tabs
-    vim.opt_local.tabstop = 8 -- Display tabs as 8 spaces
-  end,
+    pattern = "make",
+    callback = function()
+        vim.opt_local.expandtab = false -- Use tabs, not spaces
+        vim.opt_local.shiftwidth = 8 -- Use 8 spaces per tab (standard for Makefiles)
+        vim.opt_local.softtabstop = 0 -- Use actual tabs
+        vim.opt_local.tabstop = 8 -- Display tabs as 8 spaces
+    end,
 })
+
+-- add binaries installed by mason.nvim to path
+local is_windows = vim.fn.has "win32" ~= 0
+local sep = is_windows and "\\" or "/"
+local delim = is_windows and ";" or ":"
+vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
