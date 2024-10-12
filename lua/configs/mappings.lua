@@ -16,7 +16,7 @@ map("n", "<leader>x", function()
     require("nvchad.tabufline").close_buffer()
 end, { desc = "buffer close" })
 
-map("n", "<leader>th", function()
+map("n", "<leader>ts", function()
     require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
 
