@@ -41,3 +41,7 @@ end, { desc = "Toggle terminal - float" })
 map({ "n", "t" }, "<leader>th", function()
     require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "Toggle terminal - float" })
+
+map({ "n", "t" }, "<leader>tv", function()
+    require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+end, { desc = "Toggle terminal - float" })
