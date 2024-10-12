@@ -13,7 +13,15 @@ M.ui = {
 
     telescope = { style = "borderless" },
 
-    lsp = { signature = true },
+    cmp = {
+        icons_left = false, -- only for non-atom styles!
+        lspkind_text = true,
+        style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+        format_colors = {
+            tailwind = false, -- will work for css lsp too
+            icon = "󱓻",
+        },
+    },
 }
 
 M.lsp = { signature = true }
@@ -23,6 +31,14 @@ M.mason = { pkgs = {
     "stylua",
     "clangd",
     "clang-format",
+    "rust-analyzer",
 } }
+
+M.colorify = {
+    enabled = true,
+    mode = "virtual", -- fg, bg, virtual
+    virt_text = "󱓻 ",
+    highlight = { hex = true, lspvars = true },
+}
 
 return M

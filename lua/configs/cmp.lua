@@ -1,6 +1,6 @@
 dofile(vim.g.base46_cache .. "cmp")
 
-local cmp = require("cmp")
+local cmp = require "cmp"
 
 local options = {
     completion = { completeopt = "menu,menuone" },
@@ -12,6 +12,8 @@ local options = {
     },
 
     mapping = {
+        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
@@ -47,12 +49,11 @@ local options = {
         { name = "buffer" },
         { name = "nvim_lua" },
         { name = "path" },
-        { name = "crates" },
-    }
+    },
 }
 
-require("crates").setup({
-    completion = { cmp = { enabled = true }}
-})
+require("crates").setup {
+    completion = { cmp = { enabled = false } },
+}
 
 return vim.tbl_deep_extend("force", options, require "nvchad.cmp")

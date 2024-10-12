@@ -27,6 +27,18 @@ return {
     },
 
     "nvchad/volt",
+    "nvchad/minty",
+    "nvchad/menu",
+
+    {
+        "folke/which-key.nvim",
+        keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+        opts = function()
+            dofile(vim.g.base46_cache .. "whichkey")
+            return {}
+        end,
+    },
+
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
@@ -92,18 +104,19 @@ return {
 
     -- LSP
     {
-        "stevearc/conform.nvim",
-        opts = {
-            formatters_by_ft = { lua = { "stylua" } },
-            format_on_save = { lsp_fallback = true },
-        },
-    },
-
-    {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
         opts = function()
             return require "configs.mason"
+        end,
+    },
+
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^5",
+        lazy = false,
+        config = function()
+            require "configs.rustaceanvim"
         end,
     },
 
@@ -113,7 +126,6 @@ return {
             "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
             "stevearc/conform.nvim",
-            "simrat39/rust-tools.nvim",
         },
         config = function()
             require("configs.lspconfig").defaults()

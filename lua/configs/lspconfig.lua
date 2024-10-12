@@ -12,9 +12,9 @@ M.on_attach = function(_, bufnr)
     map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
     map("n", "<leader>sd", vim.lsp.buf.hover, opts "Hover documentation")
     map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-    map("n", "<S-F6>", require "nvchad.lsp.renamer", opts "NvRenamer")
+    map("n", "<F2>", require "nvchad.lsp.renamer", opts "NvRenamer")
 
-    map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
+    map({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
 
     map("n", "<leader>ff", function()
         require("conform").format { async = true, lsp_fallback = true }
@@ -91,5 +91,17 @@ M.defaults = function()
         },
     }
 end
+
+require("conform").setup {
+    formatters_by_ft = {
+        lua = { "stylua" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        hpp = { "clang-format" },
+        h = { "clang-format" },
+        rust = { "rustfmt" },
+    },
+    format_on_save = { lsp_fallback = true },
+}
 
 return M
