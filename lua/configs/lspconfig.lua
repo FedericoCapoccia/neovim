@@ -3,7 +3,7 @@ local map = vim.keymap.set
 
 M.on_attach = function(_, bufnr)
     local function opts(desc)
-        return { buffer = bufnr, desc = "LSP " .. desc }
+        return { buffer = bufnr, desc = "LSP " .. desc, noremap = true }
     end
 
     map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
@@ -63,7 +63,10 @@ M.defaults = function()
         },
     }
 
-    require("lspconfig").rust_analyzer.setup {}
+    require("lspconfig").rust_analyzer.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+    }
 
     require("lspconfig").lua_ls.setup {
         on_attach = M.on_attach,
