@@ -26,13 +26,16 @@ M.ui = {
 
 M.lsp = { signature = true }
 
-M.mason = { pkgs = {
-    "lua-language-server",
-    "stylua",
-    "clangd",
-    "clang-format",
-    "rust-analyzer",
-} }
+M.mason = {
+    pkgs = {
+        "lua-language-server",
+        "stylua",
+        "clangd",
+        "clang-format",
+        "rust-analyzer",
+        "cmake-language-server",
+    },
+}
 
 M.colorify = {
     enabled = true,

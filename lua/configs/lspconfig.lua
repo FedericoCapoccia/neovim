@@ -68,6 +68,11 @@ M.defaults = function()
         capabilities = M.capabilities,
     }
 
+    require("lspconfig").cmake.setup {
+        on_attach = M.on_attach,
+        capabilities = M.capabilities,
+    }
+
     require("lspconfig").lua_ls.setup {
         on_attach = M.on_attach,
         capabilities = M.capabilities,
