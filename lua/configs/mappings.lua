@@ -4,6 +4,7 @@ local map = vim.keymap.set
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<leader>ww", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<leader>qq", "<cmd>q!<CR>", { desc = "force quit" })
+map("x", "p", "P")
 
 -- Tabufline
 map("n", "<tab>", function()
