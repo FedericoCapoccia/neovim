@@ -121,6 +121,13 @@ return {
     -- },
 
     {
+        "mfussenegger/nvim-jdtls",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+    },
+
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "hrsh7th/nvim-cmp",
