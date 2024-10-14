@@ -28,33 +28,18 @@ M.on_init = function(client, _)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
-
-M.capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    labelDetailsSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = {
-        properties = {
-            "documentation",
-            "detail",
-            "additionalTextEdits",
-        },
-    },
-}
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(M.capabilities)
 
 M.defaults = function()
     dofile(vim.g.base46_cache .. "lsp")
     require("nvchad.lsp").diagnostic_config()
 
     require("lspconfig").clangd.setup {
-        on_attach = M.on_attach,
+        on_attach = function(client, bufnr)
+            client.server_capabilities.signatureHelpProvider = false
+            M.on_attach(client, bufnr)
+        end,
         capabilities = M.capabilities,
-        on_init = M.on_init,
         cmd = {
             "clangd",
             "--background-index",
