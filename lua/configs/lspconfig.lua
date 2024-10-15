@@ -43,8 +43,6 @@ M.defaults = function()
         cmd = {
             "clangd",
             "--background-index",
-            "--clang-tidy",
-            "--fallback-style=webkit",
         },
     }
 
