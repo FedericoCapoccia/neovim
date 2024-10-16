@@ -37,6 +37,15 @@ M.defaults = function()
     require("lspconfig").clangd.setup {
         on_attach = function(client, bufnr)
             client.server_capabilities.signatureHelpProvider = false
+            require("clangd_extensions.inlay_hints").setup_autocmd()
+            require("clangd_extensions.inlay_hints").set_inlay_hints()
+
+            local function opts(desc)
+                return { buffer = bufnr, desc = "LSP " .. desc, noremap = true }
+            end
+
+            map("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", opts "Switch source header")
+
             M.on_attach(client, bufnr)
         end,
         capabilities = M.capabilities,
@@ -44,6 +53,9 @@ M.defaults = function()
             "clangd",
             "--background-index",
             "--clang-tidy",
+            "--all-scopes-completion",
+            "--pch-storage=memory",
+            "-j=4",
             "--log=verbose",
             "--pretty",
         },

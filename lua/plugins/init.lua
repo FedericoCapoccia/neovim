@@ -133,6 +133,7 @@ return {
             "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
             "stevearc/conform.nvim",
+            "p00f/clangd_extensions.nvim",
         },
         config = function()
             require("configs.lspconfig").defaults()
@@ -180,6 +181,7 @@ return {
                 "hrsh7th/cmp-cmdline",
 
                 "saecki/crates.nvim",
+                "p00f/clangd_extensions.nvim",
             },
         },
         opts = function()
