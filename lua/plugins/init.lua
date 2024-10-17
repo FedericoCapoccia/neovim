@@ -48,6 +48,34 @@ return {
     },
 
     {
+        "folke/todo-comments.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        lazy = false,
+        config = function()
+            require("todo-comments").setup {
+                search = {
+                    command = "rg",
+                    args = {
+                        "--color=always", --change
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                    },
+                    -- regex that will be used to match keywords.
+                    -- don't replace the (KEYWORDS) placeholder
+                    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+                    -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+                },
+            }
+        end,
+    },
+
+    {
         "lewis6991/gitsigns.nvim",
         opts = function()
             return require "configs.gitsigns"
