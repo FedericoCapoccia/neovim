@@ -67,6 +67,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+require("configs.mappings").vanilla()
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has "win32" ~= 0
 local sep = is_windows and "\\" or "/"

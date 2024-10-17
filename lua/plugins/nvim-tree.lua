@@ -1,6 +1,4 @@
-dofile(vim.g.base46_cache .. "nvimtree")
-
-return {
+local M = {
     filters = { dotfiles = false },
     disable_netrw = true,
     hijack_cursor = true,
@@ -31,4 +29,14 @@ return {
             },
         },
     },
+}
+
+return {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+        require("nvim-tree").setup(M)
+        require("configs.mappings").nvimtree()
+    end,
 }

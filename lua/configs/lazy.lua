@@ -1,5 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
-
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -18,10 +16,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
+    change_detection = { notify = false },
     spec = {
         { import = "plugins" },
+        { import = "plugins/colorschemes" },
+        { import = "plugins/lsp" },
     },
 }
-
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "statusline")

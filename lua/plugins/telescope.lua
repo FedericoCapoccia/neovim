@@ -1,6 +1,4 @@
-dofile(vim.g.base46_cache .. "telescope")
-
-return {
+local M = {
     defaults = {
         prompt_prefix = "   ",
         selection_caret = " ",
@@ -14,9 +12,6 @@ return {
             width = 0.87,
             height = 0.80,
         },
-        mappings = {
-            n = { ["q"] = require("telescope.actions").close },
-        },
     },
 
     pickers = {
@@ -25,7 +20,16 @@ return {
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
     },
+}
 
-    extensions_list = { "themes", "terms" },
-    extensions = {},
+return {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+        require("telescope").setup(M)
+        require("configs.mappings").telescope()
+    end,
 }
