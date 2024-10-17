@@ -1,3 +1,4 @@
 require "configs"
 
-vim.cmd "colorscheme rose-pine-main"
+vim.cmd "colorscheme onedark"
+-- vim.cmd "colorscheme rose-pine-main"
