@@ -5,6 +5,12 @@ local M = {
 
     styles = {
         transparency = true,
+        italic = false,
+        bold = false,
+    },
+
+    highlight_groups = {
+        Comment = { italic = true },
     },
 }
 
