@@ -42,6 +42,7 @@ M.lsp_defaults = function(_, bufnr)
     map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
     map("n", "<leader>sd", vim.lsp.buf.hover, opts "Hover documentation")
     map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
+    map("n", "<f2>", vim.lsp.buf.rename, opts "Rename")
 
     map({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
 
