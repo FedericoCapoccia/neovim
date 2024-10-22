@@ -24,6 +24,7 @@ M.setup = function()
             "--all-scopes-completion",
             "--pch-storage=memory",
             "-j=4",
+            "-header-insertion=never",
             "--log=verbose",
             "--pretty",
         },
