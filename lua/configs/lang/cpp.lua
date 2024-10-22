@@ -2,11 +2,16 @@ local map = vim.keymap.set
 local M = {}
 
 M.setup = function()
+    require("clangd_extensions").setup {
+        inlay_hints = {
+            inline = false,
+        },
+    }
     require("lspconfig").clangd.setup {
         on_attach = function(client, bufnr)
             client.server_capabilities.signatureHelpProvider = false
-            require("clangd_extensions.inlay_hints").setup_autocmd()
-            require("clangd_extensions.inlay_hints").set_inlay_hints()
+            -- require("clangd_extensions.inlay_hints").setup_autocmd()
+            -- require("clangd_extensions.inlay_hints").set_inlay_hints()
 
             local function opts(desc)
                 return { buffer = bufnr, desc = "LSP " .. desc, noremap = true }
@@ -16,7 +21,7 @@ M.setup = function()
 
             require("configs.mappings").lsp_defaults(client, bufnr)
         end,
-        capabilities = vim.lsp.protocol.make_client_capabilities(),
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
         cmd = {
             "clangd",
             "--background-index",

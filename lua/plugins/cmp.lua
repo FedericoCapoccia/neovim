@@ -85,7 +85,7 @@ return {
 
             formatting = {
                 format = function(_, vim_item)
-                    vim_item.menu = nil
+                    vim_item.menu = ""
                     return vim_item
                 end,
             },
