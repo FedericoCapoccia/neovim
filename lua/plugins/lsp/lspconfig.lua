@@ -21,9 +21,10 @@ end
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "hrsh7th/nvim-cmp",
-        "hrsh7th/cmp-nvim-lsp",
+        -- "hrsh7th/nvim-cmp",
+        -- "hrsh7th/cmp-nvim-lsp",
         "stevearc/conform.nvim",
+        "saghen/blink.cmp",
         "p00f/clangd_extensions.nvim",
     },
     config = function()

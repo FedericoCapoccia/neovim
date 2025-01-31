@@ -6,7 +6,8 @@ M.setup = function()
         on_attach = function(client, bufnr)
             require("configs.mappings").lsp_defaults(client, bufnr)
         end,
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
     }
 end
 
