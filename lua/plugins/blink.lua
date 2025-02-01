@@ -14,7 +14,7 @@ return {
         completion = {
             menu = {
                 border = "rounded",
-                winblend = 0,
+                winblend = 100,
 
                 draw = {
                     columns = { { "kind_icon" }, { "label", gap = 1 } },
@@ -32,7 +32,7 @@ return {
             },
 
             documentation = {
-                window = { border = "rounded", winblend = 0 },
+                window = { border = "rounded", winblend = 100 },
                 auto_show = true,
                 auto_show_delay_ms = 200,
             },
