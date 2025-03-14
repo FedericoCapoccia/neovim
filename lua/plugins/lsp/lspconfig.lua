@@ -4,6 +4,7 @@ M.setup = function()
     require("configs.lang.cpp").setup()
     require("configs.lang.lua").setup()
     require("configs.lang.rust").setup()
+    require("configs.lang.python").setup()
 
     require("conform").setup {
         formatters_by_ft = {
@@ -13,6 +14,7 @@ M.setup = function()
             hpp = { "clang-format" },
             h = { "clang-format" },
             rust = { "rustfmt" },
+            python = { "black" },
         },
         format_on_save = { lsp_fallback = true },
     }
