@@ -21,8 +21,6 @@ return {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
             dependencies = "rafamadriz/friendly-snippets",
-            -- install jsregexp (optional!).
-            -- build = "make install_jsregexp",
         },
     },
     config = function()
@@ -73,9 +71,22 @@ return {
             sources = {
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
-                -- { name = "buffer" },
                 { name = "nvim_lua" },
                 { name = "path" },
+                { name = "crates" },
+            },
+
+            sorting = {
+                comparators = {
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.recently_used,
+                    require "clangd_extensions.cmp_scores",
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
             },
 
             window = {
@@ -92,7 +103,7 @@ return {
         }
 
         require("crates").setup {
-            completion = { cmp = { enabled = false } },
+            completion = { cmp = { enabled = true } },
         }
     end,
 }

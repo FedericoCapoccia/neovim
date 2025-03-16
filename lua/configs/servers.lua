@@ -1,14 +1,22 @@
-local M = {}
-
-M.setup = function()
-    require("lspconfig").lua_ls.setup {
-        on_attach = function(client, bufnr)
-            require("configs.mappings").lsp_defaults(client, bufnr)
-        end,
-        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
-
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
-
+return {
+    clangd = {
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--all-scopes-completion",
+            "--pch-storage=memory",
+            "-j=4",
+            "-header-insertion=never",
+            "--log=verbose",
+            "--pretty",
+        },
+        init_options = {
+            fallbackFlags = { "-std=c++23" },
+        },
+    },
+    cmake = {},
+    lua_ls = {
         settings = {
             Lua = {
                 diagnostics = {
@@ -29,7 +37,7 @@ M.setup = function()
                 },
             },
         },
-    }
-end
-
-return M
+    },
+    rust_analyzer = {},
+    pyright = {},
+}

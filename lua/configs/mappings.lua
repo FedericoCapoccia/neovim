@@ -43,24 +43,13 @@ M.lsp_defaults = function(_, bufnr)
     map("n", "<leader>sd", vim.lsp.buf.hover, opts "Hover documentation")
     map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
     map("n", "<f2>", vim.lsp.buf.rename, opts "Rename")
-
     map({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
 
     map("n", "<leader>ff", function()
         require("conform").format { async = true, lsp_fallback = true }
     end, opts "Formatter")
-end
 
--- map({ "n", "t" }, "<leader>tf", function()
---     require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
--- end, { desc = "Toggle terminal - float" })
---
--- map({ "n", "t" }, "<leader>th", function()
---     require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
--- end, { desc = "Toggle terminal - float" })
---
--- map({ "n", "t" }, "<leader>tv", function()
---     require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
--- end, { desc = "Toggle terminal - float" })
+    map("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", opts "Switch source header")
+end
 
 return M
