@@ -49,6 +49,10 @@ M.lsp_defaults = function(_, bufnr)
         require("conform").format { async = true, lsp_fallback = true }
     end, opts "Formatter")
 
+    map("n", "<leader>ll", function()
+        require("lint").try_lint()
+    end, opts "Linter")
+
     map("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", opts "Switch source header")
 end
 
