@@ -31,6 +31,7 @@ M.setup = function()
     require("lint").linters_by_ft = {
         python = { "pylint" },
         rust = { "clippy" },
+        cmake = { "cmakelint" },
     }
 
     require("crates").setup {
