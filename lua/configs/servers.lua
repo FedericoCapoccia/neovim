@@ -33,6 +33,9 @@ return {
                         snippets = "none", -- Disable function argument placeholders
                     },
                 },
+                inlayHints = {
+                    typeHints = false,
+                },
             },
         },
     },
