@@ -45,6 +45,10 @@ M.lsp_defaults = function(_, bufnr)
     map("n", "<f2>", vim.lsp.buf.rename, opts "Rename")
     map({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
 
+    -- map("n", "<C-k>", function()
+    --     require("lsp_signature").toggle_float_win()
+    -- end, opts "toggle signature")
+
     map("n", "<leader>ff", function()
         require("conform").format { async = true, lsp_fallback = true }
     end, opts "Formatter")

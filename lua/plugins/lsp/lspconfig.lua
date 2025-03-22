@@ -2,8 +2,62 @@ local M = {}
 
 M.setup = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = { "documentation", "detail", "additionalTextEdits" },
+    }
+    local methods = vim.lsp.protocol.Methods
+
     local on_attach = function(client, bufnr)
         require("configs.mappings").lsp_defaults(client, bufnr)
+
+        if client.supports_method(methods.textDocument_documentHighlight) then
+            local under_cursor_highlights_group =
+                vim.api.nvim_create_augroup("main/cursor_highlights", { clear = false })
+
+            vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+                group = under_cursor_highlights_group,
+                desc = "Highlight references under the cursor",
+                buffer = bufnr,
+                callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+                group = under_cursor_highlights_group,
+                desc = "Clear highlight references",
+                buffer = bufnr,
+                callback = vim.lsp.buf.clear_references,
+            })
+        end
+
+        if client.supports_method(methods.textDocument_inlayHint) then
+            local inlay_hints_group = vim.api.nvim_create_augroup("main/toggle_inlay_hints", { clear = false })
+
+            -- Initial inlay hint display.
+            -- Idk why but without the delay inlay hints aren't displayed at the very start.
+            vim.defer_fn(function()
+                local mode = vim.api.nvim_get_mode().mode
+                vim.lsp.inlay_hint.enable(mode == "n" or mode == "v", { bufnr = bufnr })
+            end, 500)
+
+            vim.api.nvim_create_autocmd("InsertEnter", {
+                group = inlay_hints_group,
+                desc = "Enable inlay hints",
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("InsertLeave", {
+                group = inlay_hints_group,
+                desc = "Disable inlay hints",
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                end,
+            })
+        end
     end
     local servers = require "configs.servers"
 
@@ -53,6 +107,19 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "stevearc/conform.nvim", -- Formatter
         "mfussenegger/nvim-lint", -- Linter
+        {
+            -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+            -- used for completion, annotations and signatures of Neovim apis
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {
+                library = {
+                    -- Load luvit types when the `vim.uv` word is found
+                    { path = "luvit-meta/library", words = { "vim%.uv" } },
+                    { path = "/usr/share/awesome/lib/", words = { "awesome" } },
+                },
+            },
+        },
 
         "p00f/clangd_extensions.nvim",
         "saecki/crates.nvim",
