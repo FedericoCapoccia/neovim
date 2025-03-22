@@ -10,6 +10,7 @@ return {
             "-header-insertion=never",
             "--log=verbose",
             "--pretty",
+            "--function-arg-placeholders=0",
         },
         init_options = {
             fallbackFlags = { "-std=c++23" },
@@ -24,7 +25,17 @@ return {
         },
     },
 
-    rust_analyzer = {},
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                completion = {
+                    callable = {
+                        snippets = "none", -- Disable function argument placeholders
+                    },
+                },
+            },
+        },
+    },
 
     pyright = {},
 }
