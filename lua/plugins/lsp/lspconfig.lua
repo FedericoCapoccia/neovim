@@ -2,10 +2,6 @@ local M = {}
 
 M.setup = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    }
     local methods = vim.lsp.protocol.Methods
 
     local on_attach = function(client, bufnr)
@@ -59,8 +55,8 @@ M.setup = function()
             })
         end
     end
-    local servers = require "configs.servers"
 
+    local servers = require "configs.servers"
     for server, opts in pairs(servers) do
         opts.capabilities = capabilities
         opts.on_attach = on_attach
@@ -102,7 +98,6 @@ end
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        --"saghen/blink.cmp",
         "hrsh7th/nvim-cmp", -- CMP plugin
         "hrsh7th/cmp-nvim-lsp",
         "stevearc/conform.nvim", -- Formatter
