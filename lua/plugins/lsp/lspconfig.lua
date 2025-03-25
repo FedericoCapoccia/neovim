@@ -70,6 +70,7 @@ M.setup = function()
             c = { "clang-format" },
             cpp = { "clang-format" },
             hpp = { "clang-format" },
+            cmake = { "cmakelang" },
             h = { "clang-format" },
             rust = { "rustfmt" },
             python = { "black" },
