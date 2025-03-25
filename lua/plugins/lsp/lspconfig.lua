@@ -74,6 +74,7 @@ M.setup = function()
             h = { "clang-format" },
             rust = { "rustfmt" },
             python = { "black" },
+            json = { "prettier" },
         },
         format_on_save = { lsp_fallback = true },
     }
