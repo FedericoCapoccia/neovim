@@ -11,6 +11,7 @@ return {
             "--log=verbose",
             "--pretty",
             "--function-arg-placeholders=0",
+            "--experimental-modules-support",
         },
         init_options = {
             fallbackFlags = { "-std=c++23" },
