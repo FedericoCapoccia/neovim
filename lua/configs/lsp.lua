@@ -17,11 +17,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
         local function opts(desc)
-            return { buffer = ev.buf, desc = "LSP " .. desc, noremap = true }
+            return { buffer = ev.buf, desc = "LSP " .. desc, remap = true }
         end
 
-        client.server_capabilities = vim.tbl_deep_extend("force", client.server_capabilities,
-            require("cmp_nvim_lsp").default_capabilities())
+        -- client.server_capabilities = vim.tbl_deep_extend("force", client.server_capabilities,
+        -- require("cmp_nvim_lsp").default_capabilities())
 
         if client:supports_method "textDocument/inlayHint" then
             vim.lsp.inlay_hint.enable(true)
