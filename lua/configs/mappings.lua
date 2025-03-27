@@ -12,11 +12,7 @@ M.vanilla = function()
 
     map('n', "<Tab>", "<cmd> :bnext <cr>", { desc = "next buffer", remap = true })
     map('n', "<S-Tab>", "<cmd> :bprevious <cr>", { desc = "previous buffer", remap = true })
-end
-
-M.nvimtree = function()
-    map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-    map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+    map('n', "<A-o>", "<cmd>:ClangdSwitchSourceHeader<cr>", { desc = "Switch between header and source", remap = true })
 end
 
 return M

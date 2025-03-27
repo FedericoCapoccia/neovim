@@ -39,6 +39,7 @@ return {
         "onsails/lspkind.nvim",
         "xzbdmw/colorful-menu.nvim",
         "nvim-tree/nvim-web-devicons",
+        "p00f/clangd_extensions.nvim",
     },
     opts = M
 }
