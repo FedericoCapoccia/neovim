@@ -1,6 +1,7 @@
 local M = {}
 
 M.setup = function()
+    require("lspkind").init {}
     local kind_formatter = require("lspkind").cmp_format {
         mode = "symbol_text",
         menu = {

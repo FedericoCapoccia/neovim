@@ -22,7 +22,6 @@ return {
         'compile_commands.json',
         'compile_flags.txt',
         'configure.ac', -- AutoTools
-        '.git',
     },
     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
     capabilities = {
