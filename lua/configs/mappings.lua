@@ -9,11 +9,9 @@ M.vanilla = function()
     map("x", "p", "P")
     map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
     map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
-end
 
-M.bufferline = function()
-    map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "buffer goto next" })
-    map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "buffer goto previous" })
+    map('n', "<Tab>", "<cmd> :bnext <cr>", { desc = "next buffer", remap = true })
+    map('n', "<S-Tab>", "<cmd> :bprevious <cr>", { desc = "previous buffer", remap = true })
 end
 
 M.nvimtree = function()

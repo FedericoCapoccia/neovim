@@ -8,7 +8,14 @@ local M = {
         scope = { char = "╎" }
     },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+        enabled = true,
+        sources = {
+            explorer = {
+                auto_close = true,
+            }
+        }
+    },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
@@ -26,6 +33,7 @@ return {
     "folke/snacks.nvim",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
+        "echasnovski/mini.nvim"
     },
     priority = 1000,
     lazy = false,
@@ -38,6 +46,7 @@ return {
         { "<leader>x",  function() Snacks.bufdelete() end,           desc = "Delete Buffer" },
         { "<leader>gB", function() Snacks.gitbrowse() end,           desc = "Git Browse",     mode = { "n", "v" } },
         { "<F5>",       function() Snacks.terminal.toggle() end,     desc = "Toggle Terminal" },
+        { "<leader>e",  function() Snacks.explorer() end,            desc = "File Explorer" },
     }
 
 }
