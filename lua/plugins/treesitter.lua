@@ -21,6 +21,7 @@ return {
                 "json",
                 "rust",
                 "toml",
+                "markdown"
             },
 
             highlight = {

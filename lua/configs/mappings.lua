@@ -31,33 +31,4 @@ M.nvimtree = function()
     map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 end
 
-M.lsp_defaults = function(_, bufnr)
-    local function opts(desc)
-        return { buffer = bufnr, desc = "LSP " .. desc, noremap = true }
-    end
-
-    map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
-    map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
-    map("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
-    map("n", "<leader>sh", vim.lsp.buf.signature_help, opts "Show signature help")
-    map("n", "<leader>sd", vim.lsp.buf.hover, opts "Hover documentation")
-    map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-    map("n", "<f2>", vim.lsp.buf.rename, opts "Rename")
-    map({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
-
-    -- map("n", "<C-k>", function()
-    --     require("lsp_signature").toggle_float_win()
-    -- end, opts "toggle signature")
-
-    map("n", "<leader>ff", function()
-        require("conform").format { async = true, lsp_fallback = true }
-    end, opts "Formatter")
-
-    map("n", "<leader>ll", function()
-        require("lint").try_lint()
-    end, opts "Linter")
-
-    map("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", opts "Switch source header")
-end
-
 return M

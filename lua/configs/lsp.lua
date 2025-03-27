@@ -32,5 +32,47 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 require("conform").format { async = true, lsp_fallback = true }
             end, opts "Formatter")
         end
+
+        if client:supports_method "textDocument/codeAction" then
+            vim.keymap.set({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
+        end
+
+        if client:supports_method "textDocument/declaration" then
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
+        end
+
+        if client:supports_method "textDocument/definition" then
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
+        end
+
+        if client:supports_method "textDocument/implementation" then
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
+        end
+
+        if client:supports_method "textDocument/hover" then
+            vim.keymap.set("n", "<leader>sd", vim.lsp.buf.hover, opts "Hover documentation")
+        end
+
+        if client:supports_method "textDocument/typeDefinition*" then
+            vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
+        end
+
+        if client:supports_method "textDocument/rename" then
+            vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts "Rename")
+        end
+
+        if client:supports_method "textDocument/signatureHelp" then
+            vim.keymap.set("n", "<leader>sh", function()
+                require("lsp_signature").toggle_float_win()
+            end, opts "Show signature help")
+        end
+
+
+        -- Extra
+        vim.keymap.set("n", "<A-o>", "<cmd>ClangdSwitchSourceHeader<CR>", opts "Switch source header")
+
+        vim.keymap.set("n", "<leader>ll", function()
+            require("lint").try_lint()
+        end, opts "Linter")
     end,
 })

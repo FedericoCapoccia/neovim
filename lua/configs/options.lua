@@ -41,6 +41,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.timeoutlen = 400
 
+vim.opt.winborder = 'rounded'
+
 -- Use system cliboard if not in SSH
 if not vim.env.SSH_TTY then
     vim.opt.clipboard = "unnamedplus"
@@ -61,9 +63,9 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "make",
     callback = function()
         vim.opt_local.expandtab = false -- Use tabs, not spaces
-        vim.opt_local.shiftwidth = 8 -- Use 8 spaces per tab (standard for Makefiles)
-        vim.opt_local.softtabstop = 0 -- Use actual tabs
-        vim.opt_local.tabstop = 8 -- Display tabs as 8 spaces
+        vim.opt_local.shiftwidth = 8    -- Use 8 spaces per tab (standard for Makefiles)
+        vim.opt_local.softtabstop = 0   -- Use actual tabs
+        vim.opt_local.tabstop = 8       -- Display tabs as 8 spaces
     end,
 })
 

@@ -18,14 +18,6 @@ return {
     },
 
     {
-        "stevearc/dressing.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("dressing").setup()
-        end,
-    },
-
-    {
         "norcalli/nvim-colorizer.lua",
         config = function()
             require("colorizer").setup { "*" }
