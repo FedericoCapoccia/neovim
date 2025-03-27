@@ -21,7 +21,11 @@ return {
                 "json",
                 "rust",
                 "toml",
-                "markdown"
+                "markdown",
+                "markdown_inline",
+                "html",
+                "typst",
+                "yaml",
             },
 
             highlight = {
