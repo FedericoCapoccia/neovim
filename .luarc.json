@@ -5,6 +5,7 @@
     ],
     "diagnostics.globals": [
         "vim",
-        "bufferline"
+        "bufferline",
+        "Snacks"
     ]
 }

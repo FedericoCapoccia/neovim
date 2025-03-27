@@ -38,15 +38,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client:supports_method "textDocument/declaration" then
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
+            vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, opts "Go to declaration")
         end
 
         if client:supports_method "textDocument/definition" then
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
+            vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, opts "Go to definition")
         end
 
         if client:supports_method "textDocument/implementation" then
-            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts "Go to implementation")
+            vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, opts "Go to implementation")
         end
 
         if client:supports_method "textDocument/hover" then
@@ -54,7 +54,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client:supports_method "textDocument/typeDefinition*" then
-            vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
+            vim.keymap.set("n", "<leader>D", function() Snacks.picker.lsp_type_definitions() end,
+                opts "Go to type definition")
         end
 
         if client:supports_method "textDocument/rename" then

@@ -14,16 +14,6 @@ end
 M.bufferline = function()
     map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "buffer goto next" })
     map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "buffer goto previous" })
-    map("n", "<leader>x", function()
-        require("bufdelete").bufdelete(0)
-    end, { desc = "buffer goto previous" })
-end
-
-M.telescope = function()
-    map("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "telescope find files" })
-    map("n", "<leader>ps", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in buffer" })
-    map("n", "<leader>pc", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
-    map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 end
 
 M.nvimtree = function()

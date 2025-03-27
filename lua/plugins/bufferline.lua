@@ -3,7 +3,7 @@ return {
     tag = "v4.7.0",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
-        "famiu/bufdelete.nvim",
+        "folke/snacks.nvim",
     },
     config = function()
         local bufferline = require "bufferline"
@@ -12,10 +12,10 @@ return {
                 style_preset = bufferline.style_preset.minimal,
                 diagnostics = "nvim_lsp",
                 close_command = function()
-                    require("bufdelete").bufdelete(0)
+                    Snacks.bufdelete.delete()
                 end,
                 right_mouse_command = function()
-                    require("bufdelete").bufdelete(0)
+                    Snacks.bufdelete.delete()
                 end,
                 left_mouse_command = "buffer %d",
             },
