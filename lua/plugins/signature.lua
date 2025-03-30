@@ -14,7 +14,7 @@ end
 
 return {
     "ray-x/lsp_signature.nvim",
-    enabled = false,
+    enabled = true,
     event = "InsertEnter",
     config = function()
         M.setup()
