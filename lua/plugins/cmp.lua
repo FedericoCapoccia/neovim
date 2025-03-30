@@ -45,8 +45,24 @@ M.setup = function()
                 cmp.config.compare.offset,
                 cmp.config.compare.exact,
                 cmp.config.compare.score,
+
+                function(entry1, entry2)
+                    local kind1 = entry1:get_kind()
+                    local kind2 = entry2:get_kind()
+
+                    local lsp_kind = cmp.lsp.CompletionItemKind
+                    local is_snippet = function(kind)
+                        return kind == lsp_kind.Snippet
+                    end
+
+                    if is_snippet(kind1) and not is_snippet(kind2) then
+                        return false
+                    elseif not is_snippet(kind1) and is_snippet(kind2) then
+                        return true
+                    end
+                end,
+
                 cmp.config.compare.recently_used,
-                cmp.config.compare.locality,
                 cmp.config.compare.kind,
                 cmp.config.compare.sort_text,
                 cmp.config.compare.length,
@@ -56,11 +72,11 @@ M.setup = function()
 
         window = {
             completion = {
-                winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder,CursorLine:Pmenu",
+                -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder,CursorLine:Pmenu",
                 border = "rounded",
             },
             documentation = {
-                winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder",
+                -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder",
                 border = "rounded",
             },
         },
@@ -80,14 +96,11 @@ M.setup = function()
             end,
         },
     }
-
-    require("crates").setup {
-        completion = { cmp = { enabled = true } },
-    }
 end
 
 return {
     "hrsh7th/nvim-cmp",
+    enabled = true,
     event = "InsertEnter",
     dependencies = {
         -- cmp modules
@@ -98,7 +111,6 @@ return {
         "xzbdmw/colorful-menu.nvim",
 
         -- lsp thingies
-        "saecki/crates.nvim",
         "p00f/clangd_extensions.nvim",
     },
     config = function()

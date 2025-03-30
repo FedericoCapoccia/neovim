@@ -20,6 +20,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
             return { buffer = ev.buf, desc = "LSP " .. desc, remap = true }
         end
 
+        -- if client:supports_method "textDocument/completion" then
+        --     vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+        -- end
         -- client.server_capabilities = vim.tbl_deep_extend("force", client.server_capabilities,
         -- require("cmp_nvim_lsp").default_capabilities())
 

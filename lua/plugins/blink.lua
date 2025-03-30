@@ -5,9 +5,14 @@ local M = {
     },
     completion = {
         menu = {
+            -- TODO: wait for bug to be fixed and decrease it
+            max_height = 100,
+            min_width = 150,
             draw = {
+                columns = { { "kind_icon" }, { "label", gap = 1 } },
                 components = {
                     label = {
+                        width = { fill = true, max = 150 },
                         text = function(ctx)
                             return require("colorful-menu").blink_components_text(ctx)
                         end,
@@ -16,15 +21,18 @@ local M = {
                         end,
                     },
                 },
-                treesitter = { "lsp" },
             },
         },
-        documentation = { auto_show = false },
+        documentation = { auto_show = true },
+        list = {
+            max_items = 200,
+        },
     },
     signature = {
         enabled = true,
         window = {
-            show_documentation = false,
+            treesitter_highlighting = true,
+            show_documentation = true,
         },
     },
     sources = {
@@ -34,6 +42,7 @@ local M = {
 
 return {
     "saghen/blink.cmp",
+    enabled = false,
     version = "1.*",
     dependencies = {
         "onsails/lspkind.nvim",
