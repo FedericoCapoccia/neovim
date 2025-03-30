@@ -6,7 +6,7 @@ local M = {
     styles = {
         transparency = true,
         italic = false,
-        bold = false,
+        bold = true,
     },
 
     highlight_groups = {
