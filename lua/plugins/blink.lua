@@ -1,7 +1,7 @@
 local M = {
     keymap = { preset = "enter" },
     appearance = {
-        nerd_font_variant = 'normal'
+        nerd_font_variant = "normal",
     },
     completion = {
         menu = {
@@ -16,24 +16,24 @@ local M = {
                         end,
                     },
                 },
-                treesitter = { 'lsp' }
+                treesitter = { "lsp" },
             },
         },
-        documentation = { auto_show = false }
+        documentation = { auto_show = false },
     },
     signature = {
         enabled = true,
         window = {
-            show_documentation = false
-        }
+            show_documentation = false,
+        },
     },
     sources = {
-        default = { 'lsp', 'path', 'buffer' },
+        default = { "lsp", "path", "buffer" },
     },
 }
 
 return {
-    'saghen/blink.cmp',
+    "saghen/blink.cmp",
     version = "1.*",
     dependencies = {
         "onsails/lspkind.nvim",
@@ -41,5 +41,5 @@ return {
         "nvim-tree/nvim-web-devicons",
         "p00f/clangd_extensions.nvim",
     },
-    opts = M
+    opts = M,
 }

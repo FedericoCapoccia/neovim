@@ -16,7 +16,7 @@ return {
         ["rust-analyzer"] = {
             completion = {
                 callable = {
-                    snippets = "none", -- Disable function argument placeholders
+                    snippets = "add_parentheses", -- Disable function argument placeholders
                 },
             },
             inlayHints = {
@@ -24,5 +24,4 @@ return {
             },
         },
     },
-
 }
