@@ -2,7 +2,7 @@ local M = {}
 
 M.setup = function()
     require("kanagawa").setup {
-        transparent = false,
+        transparent = true,
     }
 end
 
