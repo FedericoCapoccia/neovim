@@ -3,7 +3,7 @@ return {
     filetypes = { "rust" },
 
     root_markers = {
-        -- "Cargo.toml", "Cargo.lock"
+        "Cargo.lock",
     },
 
     capabilities = {

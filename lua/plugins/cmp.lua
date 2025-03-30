@@ -1,31 +1,22 @@
 local M = {}
 
 M.setup = function()
-    require("lspkind").init {}
-    local kind_formatter = require("lspkind").cmp_format {
-        mode = "symbol_text",
-        menu = {
-            buffer = "[buf]",
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[api]",
-            path = "[path]",
-            luasnip = "[snip]",
-            gh_issues = "[issues]",
-            tn = "[TabNine]",
-            eruby = "[erb]",
-        },
-    }
-
     local cmp = require "cmp"
     cmp.setup {
-        completion = { completeopt = "menu,menuone,noinsert" },
+        completion = {
+            completeopt = "menu,menuone,noinsert",
+        },
+
+        experimental = {
+            ghost_text = true,
+        },
 
         mapping = {
-            ["<Up>"] = cmp.mapping.select_prev_item(),
-            ["<Down>"] = cmp.mapping.select_next_item(),
+            ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+            ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
             ["<C-Space>"] = cmp.mapping.complete(),
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+            ["<Tab>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+            ["<S-Tab>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
             ["<CR>"] = cmp.mapping.confirm {
                 behavior = cmp.ConfirmBehavior.Insert,
                 select = true,
@@ -35,12 +26,10 @@ M.setup = function()
         sources = {
             { name = "nvim_lsp" },
             { name = "path" },
-            { name = "crates" },
         },
 
-        -- from https://github.com/tjdevries/config.nvim/blob/master/lua/custom/completion.lua
         sorting = {
-            priority_weight = 1,
+            priority_weight = 2,
             comparators = {
                 cmp.config.compare.offset,
                 cmp.config.compare.exact,
@@ -82,17 +71,17 @@ M.setup = function()
         },
 
         formatting = {
-            fields = { "abbr", "kind", "menu" },
-            expandable_indicator = true,
-            format = function(entry, vim_item)
-                vim_item = kind_formatter(entry, vim_item)
-                local highlights_info = require("colorful-menu").cmp_highlights(entry)
-                if highlights_info ~= nil then
-                    vim_item.abbr_hl_group = highlights_info.highlights
-                    vim_item.abbr = highlights_info.text
-                end
+            fields = { "menu", "abbr", "kind" },
+            format = function(entry, item)
+                local menu_icon = {
+                    nvim_lsp = "λ",
+                    vsnip = "⋗",
+                    buffer = "Ω",
+                    path = "🖫",
+                }
+                item.menu = menu_icon[entry.source.name]
 
-                return vim_item
+                return item
             end,
         },
     }
@@ -107,8 +96,6 @@ return {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
-        "onsails/lspkind.nvim",
-        "xzbdmw/colorful-menu.nvim",
 
         -- lsp thingies
         "p00f/clangd_extensions.nvim",
