@@ -5,6 +5,7 @@ M.setup = function()
     cmp.setup {
         completion = {
             completeopt = "menu,menuone,noinsert",
+            scrollbar = false,
         },
 
         mapping = {
