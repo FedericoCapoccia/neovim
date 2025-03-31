@@ -5,7 +5,6 @@ M.setup = function()
     cmp.setup {
         completion = {
             completeopt = "menu,menuone,noinsert",
-            scrollbar = false,
         },
 
         mapping = {
@@ -60,6 +59,7 @@ M.setup = function()
             completion = {
                 -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder,CursorLine:Pmenu",
                 border = "rounded",
+                scrollbar = false,
             },
             documentation = {
                 -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder",
