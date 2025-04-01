@@ -6,5 +6,6 @@ return {
         single_file_support = true,
         semantic_tokens = "partial",
         enable_argument_placeholders = false,
+        enable_build_on_save = true,
     },
 }
