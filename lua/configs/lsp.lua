@@ -9,7 +9,7 @@ vim.lsp.config("*", {
     root_markers = { ".git" },
 })
 
-vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zig" }
+vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake" }
 -- cmake, lua_ls, pyright
 
 vim.api.nvim_create_autocmd("LspAttach", {
