@@ -7,10 +7,6 @@ M.setup = function()
             completeopt = "menu,menuone,noinsert",
         },
 
-        experimental = {
-            ghost_text = true,
-        },
-
         mapping = {
             ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
             ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
@@ -63,6 +59,7 @@ M.setup = function()
             completion = {
                 -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder,CursorLine:Pmenu",
                 border = "rounded",
+                scrollbar = false,
             },
             documentation = {
                 -- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder",
