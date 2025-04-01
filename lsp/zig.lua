@@ -2,6 +2,9 @@ return {
     cmd = { "zls" },
     root_markers = { "zls.json", "build.zig", ".git" },
     filetypes = { "zig", "zir" },
-    single_file_support = true,
-    semantic_tokens = "partial",
+    settings = {
+        single_file_support = true,
+        semantic_tokens = "partial",
+        enable_argument_placeholders = false,
+    },
 }
