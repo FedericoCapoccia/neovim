@@ -8,11 +8,12 @@ local M = {
         rust = { "rustfmt" },
         python = { "black" },
         json = { "prettier" },
+        nix = { "nixfmt" },
     },
     format_on_save = { lsp_fallback = true },
 }
 
 return {
     "stevearc/conform.nvim", -- Formatter
-    opts = M
+    opts = M,
 }
