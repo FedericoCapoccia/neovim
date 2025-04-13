@@ -9,6 +9,7 @@ local M = {
         python = { "black" },
         json = { "prettier" },
         nix = { "nixfmt" },
+        asm = { "asmfmt" },
     },
     format_on_save = { lsp_fallback = true },
 }
