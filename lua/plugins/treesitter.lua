@@ -13,19 +13,28 @@ return {
 
         configs.setup {
             ensure_installed = {
+                -- C/Cpp
                 "c",
-                "cpp",
                 "cmake",
+                "cpp",
+                -- lua
                 "lua",
-                "bash",
-                "json",
+                -- rust
+                "yaml",
                 "rust",
                 "toml",
-                "markdown",
-                "markdown_inline",
+                -- web
+                "json",
                 "html",
                 "typst",
-                "yaml",
+                -- zig
+                "zig",
+                -- nix
+                "nix",
+                -- others
+                "markdown",
+                "markdown_inline",
+                "bash",
             },
 
             highlight = {
