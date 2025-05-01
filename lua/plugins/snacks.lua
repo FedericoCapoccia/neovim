@@ -19,7 +19,7 @@ local M = {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = true },
+    scroll = { enabled = false }, -- Windows acts weird with this enabled
     statuscolumn = { enabled = true },
     words = { enabled = true },
     gitbrowse = {},
