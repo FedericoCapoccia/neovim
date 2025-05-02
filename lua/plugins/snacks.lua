@@ -42,7 +42,7 @@ return {
         {
             "<leader>pf",
             function()
-                Snacks.picker.files { exclude = { "thirdparty/**" } }
+                Snacks.picker.files { exclude = { "thirdparty/**", "vendor/**" } }
             end,
             desc = "Find Files",
         },
