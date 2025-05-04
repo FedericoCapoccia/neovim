@@ -1,5 +1,15 @@
 vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zls" }
 
+vim.lsp.config("*", {
+    capabilities = {
+        textDocument = {
+            semanticTokens = {
+                multilineTokenSupport = true,
+            },
+        },
+    },
+})
+
 vim.lsp.config("zls", {
     settings = {
         single_file_support = true,
@@ -45,6 +55,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         local function opts(desc)
             return { buffer = ev.buf, desc = "LSP " .. desc, remap = true }
+        end
+
+        if client then
         end
 
         if client:supports_method "textDocument/completion" then
