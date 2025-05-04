@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
 
         if client:supports_method "textDocument/codeAction" then
-            vim.keymap.set({ "n", "v" }, "<C-Space>", vim.lsp.buf.code_action, opts "Code action")
+            vim.keymap.set({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, opts "Code action")
         end
 
         if client:supports_method "textDocument/declaration" then
