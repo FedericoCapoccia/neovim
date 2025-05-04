@@ -11,7 +11,7 @@ vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUntracked", { link = "GruvboxGray" 
 
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
 -- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
 
 -- vim.opt.pumblend = 0
 -- vim.cmd [[
