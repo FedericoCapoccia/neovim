@@ -1,4 +1,5 @@
 local M = {
+    contrast = "hard",
     transparent_mode = true,
 }
 
