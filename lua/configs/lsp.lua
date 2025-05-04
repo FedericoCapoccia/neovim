@@ -1,16 +1,43 @@
-vim.lsp.config("*", {
-    capabilities = {
-        textDocument = {
-            semanticTokens = {
-                multilineTokenSupport = true,
+vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zls" }
+
+vim.lsp.config("zls", {
+    settings = {
+        single_file_support = true,
+        semantic_tokens = "partial",
+        enable_argument_placeholders = false,
+        enable_build_on_save = true,
+    },
+})
+
+vim.lsp.config("rust_analyzer", {
+    settings = {
+        ["rust-analyzer"] = {
+            completion = {
+                callable = {
+                    snippets = "add_parentheses", -- Disable function argument placeholders
+                },
+            },
+            inlayHints = {
+                typeHints = false,
             },
         },
     },
-    root_markers = { ".git" },
 })
 
-vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zig" }
--- cmake, lua_ls, pyright
+vim.lsp.config("clangd", {
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--pch-storage=memory",
+        "-j=4",
+        "-header-insertion=never",
+        "--log=verbose",
+        "--pretty",
+        "--function-arg-placeholders=0",
+    },
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
