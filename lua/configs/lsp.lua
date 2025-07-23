@@ -34,6 +34,8 @@ vim.lsp.config("rust_analyzer", {
     },
 })
 
+local pch_reg = [['^.*pch.*\.h$']];
+
 vim.lsp.config("clangd", {
     cmd = {
         "clangd",
@@ -46,6 +48,9 @@ vim.lsp.config("clangd", {
         "--log=verbose",
         "--pretty",
         "--function-arg-placeholders=0",
+        -- "--header-filter='*'",
+        -- "--exclude-header-filter=" .. pch_reg,
+        "--experimental-modules-support",
     },
 })
 

@@ -1,7 +1,7 @@
 require "configs"
 
 vim.o.background = "dark"
-vim.cmd "colorscheme gruvbox"
+vim.cmd "colorscheme rose-pine"
 vim.api.nvim_set_hl(0, "@lsp.type.inlayHint", { fg = "#aaaaaa", bg = "NONE", italic = true })
 vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#888888", bg = "NONE", italic = true })
 
