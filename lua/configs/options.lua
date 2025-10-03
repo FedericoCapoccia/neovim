@@ -31,7 +31,7 @@ vim.opt.cursorlineopt = "number"
 -- System
 vim.opt.mouse = "a"
 vim.opt.updatetime = 250
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "80,120"
 vim.opt.breakindent = true
 vim.opt.laststatus = 3
 vim.opt.showmode = false
