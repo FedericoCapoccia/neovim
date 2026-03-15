@@ -10,6 +10,8 @@ vim.lsp.config("*", {
     },
 })
 
+vim.lsp.config("lua-language-server", {})
+
 vim.lsp.config("zls", {
     settings = {
         single_file_support = true,
@@ -18,18 +20,6 @@ vim.lsp.config("zls", {
         enable_build_on_save = true,
     },
 })
-
--- vim.lsp.config("gopls", {
---     settings = {
---         gopls = {
---             analyses = {
---                 unusedparams = true,
---             },
---             staticcheck = true,
---             gofumpt = true,
---         },
---     },
--- })
 
 vim.lsp.config("rust_analyzer", {
     settings = {
@@ -46,7 +36,7 @@ vim.lsp.config("rust_analyzer", {
     },
 })
 
-local pch_reg = [['^.*pch.*\.h$']];
+local pch_reg = [['^.*pch.*\.h$']]
 
 vim.lsp.config("clangd", {
     cmd = {

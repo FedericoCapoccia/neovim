@@ -1,6 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    branch = 'master',
+    branch = "master",
     dependencies = {
         "OXY2DEV/markview.nvim",
     },
@@ -17,30 +17,32 @@ return {
 
         configs.setup {
             ensure_installed = {
-                -- C/Cpp
                 "c",
                 "cmake",
                 "cpp",
-                -- lua
                 "lua",
-                -- rust
                 "yaml",
                 "rust",
                 "toml",
-                -- web
                 "json",
                 "html",
                 "typst",
-                -- zig
                 "zig",
-                -- nix
                 "nix",
-                -- others
                 "markdown",
                 "markdown_inline",
                 "bash",
                 "go",
                 "http",
+                "css",
+                "javascript",
+                "latex",
+                "norg",
+                "scss",
+                "svelte",
+                "tsx",
+                "vue",
+                "regex",
             },
 
             highlight = {

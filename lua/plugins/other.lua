@@ -15,13 +15,6 @@ return {
     },
 
     {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup { "*" }
-        end,
-    },
-
-    {
         "lewis6991/gitsigns.nvim",
         opts = {
             signs = {

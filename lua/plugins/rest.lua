@@ -1,4 +1,4 @@
-return  {
+return {
     "rest-nvim/rest.nvim",
     ft = "http",
     build = false,
