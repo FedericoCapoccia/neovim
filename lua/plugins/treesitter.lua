@@ -40,6 +40,7 @@ return {
                 "markdown_inline",
                 "bash",
                 "go",
+                "http",
             },
 
             highlight = {
