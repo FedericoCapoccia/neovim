@@ -1,4 +1,4 @@
-vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zls" }
+vim.lsp.enable { "clangd", "rust_analyzer", "lua-language-server", "cmake", "zls", "gopls" }
 
 vim.lsp.config("*", {
     capabilities = {
@@ -18,6 +18,18 @@ vim.lsp.config("zls", {
         enable_build_on_save = true,
     },
 })
+
+-- vim.lsp.config("gopls", {
+--     settings = {
+--         gopls = {
+--             analyses = {
+--                 unusedparams = true,
+--             },
+--             staticcheck = true,
+--             gofumpt = true,
+--         },
+--     },
+-- })
 
 vim.lsp.config("rust_analyzer", {
     settings = {

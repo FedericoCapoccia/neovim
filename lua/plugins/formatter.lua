@@ -10,6 +10,7 @@ local M = {
         json = { "prettier" },
         nix = { "nixfmt" },
         asm = { "asmfmt" },
+        go = { "gopls" },
     },
     format_on_save = { lsp_fallback = true },
 }
