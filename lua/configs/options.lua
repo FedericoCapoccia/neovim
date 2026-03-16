@@ -78,6 +78,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "css", "json", "yaml" },
+    callback = function()
+        vim.opt_local.tabstop = 8
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.expandtab = true
+    end,
+})
+
 require("configs.mappings").vanilla()
 
 -- add binaries installed by mason.nvim to path
